@@ -1,0 +1,38 @@
+web Browser ----------> Customer Controller --------> CustomerDAO ----> DB
+				1								2					3
+								|
+								|
+								|	4
+								|
+							JSP Pages
+
+CustomerDAO (data access object/helper class with Hibernate API does intercation wiht db ,
+we dont use Main.app save(session) anymore instead we use methods in DAO like getCust. DeleteCust etc)
+
+For hibernate, our DAO needs a hibernate SessionFactory and then 
+Session Factory actually needs a data source
+
+These dependencies will be bind by DI.
+we hv already injected Data source in SF in config file
+now we hv to inject SF in Dao
+
+
+web Browser ----------> Customer Controller --------> CustomerService------> CustomerDAO ----> DB
+				1								2						3					4
+								|
+								|
+								|	5
+								|
+							JSP Pages
+
+Purpose of service Layer:
+	Intermediate layer for custom business Logic
+	
+GET								|		POST
+<1000 length					| no length bound
+Can Bookmark or email url  		| can't 
+Binary data not allowed(images) | allowed
+in url form data is shown
+easy for debugging				| data not shown
+browser request are always GET 	| Post request on browser throw error
+
